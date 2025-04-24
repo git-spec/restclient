@@ -3,6 +3,7 @@ package org.example.restclient.service;
 import org.example.restclient.model.RequestUser;
 import org.example.restclient.model.ResponseUser;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -12,9 +13,9 @@ import org.springframework.web.client.RestClient;
 public class UserService {
     RestClient restClient;
 
-    public UserService(RestClient.Builder restClientBuilder) {
+    public UserService(RestClient.Builder restClientBuilder, @Value("${BASE_URL}") String baseUrl) {
         this.restClient = restClientBuilder
-            .baseUrl("https://reqres.in/api")
+            .baseUrl(baseUrl)
             .build();
     }
 
